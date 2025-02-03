@@ -1,0 +1,41 @@
+use "std/conv"
+use "std/os"
+
+fn selectionSort(mut array: []int, n: int) {
+	mut i := 0
+	for i < n; i++ {
+		mut minIndex := i
+		mut j := i + 1
+		for j < n; j++ {
+			if (array[j] < array[minIndex]) {
+				minIndex = j
+			}
+		}
+
+		// Swap operation
+		temp := array[i]
+		array[i] = array[minIndex]
+		array[minIndex] = temp
+	}
+}
+
+fn main() {
+	print("Enter the array size: ")
+	n := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	mut array := make([]int, n)
+	print("Enter array elements:\n")
+	mut i := 0
+	for i < n; i++ {
+		array[i] = conv::Atoi(os::Stdin().ReadLine()!)!
+	}
+
+	selectionSort(array, n)
+	print("Sorted array: \n")
+	i = 0
+	for i < n; i++ {
+		print(array[i])
+		print(" ")
+	}
+	print("\n")
+}
