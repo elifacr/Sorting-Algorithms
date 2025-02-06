@@ -1,0 +1,44 @@
+use "std/conv"
+use "std/os"
+
+fn recursiveSelectionSort(mut array: []int, n: int) {
+	if (n <= 1) {
+		ret
+	}
+
+	mut minIndex := 0
+	mut i := 1
+	for i < n; i++ {
+		if (array[i] < array[minIndex]) {
+			minIndex = i
+		}
+	}
+
+	// Swap operation
+	temp := array[0]
+	array[0] = array[minIndex]
+	array[minIndex] = temp
+
+	recursiveSelectionSort(array[1:], n - 1)
+}
+
+fn main() {
+	print("Enter the array size: ")
+	n := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	mut array := make([]int, n)
+	print("\nEnter array elements:\n")
+	mut i := 0
+	for i < n; i++ {
+		array[i] = conv::Atoi(os::Stdin().ReadLine()!)!
+	}
+
+	recursiveSelectionSort(array, n)
+	print("\nSorted array: \n")
+	i = 0
+	for i < n; i++ {
+		print(array[i])
+		print(" ")
+	}
+	print("\n")
+}
